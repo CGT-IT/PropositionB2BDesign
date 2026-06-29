@@ -53,6 +53,10 @@
     });
   }
 
+  function isMobile() {
+    return window.innerWidth <= 991.98;
+  }
+
   function initToggle() {
     const sidebar = document.getElementById('sidebar');
     const btn = document.getElementById('sidebarToggleBtn');
@@ -66,13 +70,21 @@
       btn.setAttribute('aria-label', collapsed ? 'Ouvrir le menu' : 'Réduire le menu');
     };
 
+    const syncMobile = () => {
+      if (isMobile()) sidebar.classList.add('collapsed');
+      refresh();
+      syncTooltips();
+    };
+
     btn.addEventListener('click', () => {
+      if (isMobile()) return;
       sidebar.classList.toggle('collapsed');
       refresh();
       syncTooltips();
     });
 
-    refresh();
+    window.addEventListener('resize', syncMobile);
+    syncMobile();
   }
 
   document.addEventListener('DOMContentLoaded', () => {

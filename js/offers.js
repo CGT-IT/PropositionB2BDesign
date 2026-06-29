@@ -72,10 +72,13 @@ function buildChildrenHtml(offer) {
           <strong>${child.name}</strong><br>
           <small class="text-muted d-flex align-items-center gap-2">
             ${capacityHtml}
-            <i class="bi bi-hash"></i> ${child.numeroEnregistrement}
+            <span title="Numéro d'enregistrement" aria-label="Numéro d'enregistrement : ${child.numeroEnregistrement}">
+              <i class="bi bi-hash" aria-hidden="true"></i> ${child.numeroEnregistrement}
+            </span>
             <button type="button" class="btn btn-link btn-sm p-0 copy-btn"
-              data-copy="${child.numeroEnregistrement}" title="Copier">
-              <i class="bi bi-copy"></i>
+              data-copy="${child.numeroEnregistrement}" title="Copier le numéro d'enregistrement"
+              aria-label="Copier le numéro d'enregistrement ${child.numeroEnregistrement}">
+              <i class="bi bi-copy" aria-hidden="true"></i>
             </button>
           </small>
         </div>
@@ -98,69 +101,55 @@ function buildChildrenHtml(offer) {
     </div>`;
 }
 
-function buildDemarchesHtml(offer) {
-  if (!offer.demarches?.length) return '';
+function buildNumerosHtml(offer) {
+  if (!offer.numeros?.length) return '';
+
+  const label = offer.numeros.length <= 1 ? 'Numéro de décision' : 'Numéros de décision';
+
+  const NUMERO_META = [
+    { key: 'poleDattraction',       label: "Pôle d'attraction" },
+    { key: 'sousPoleRecréatif',     label: "Sous pôle récréatif" },
+    { key: 'certification',         label: "Certification" },
+    { key: 'categorieCertification',label: "Catégorie de certification" },
+    { key: 'classement',            label: "Classement" },
+  ];
 
   return `
     <div class="mt-4">
       <div class="fw-semibold mb-2">
-        <i class="bi bi-folder2-open"></i>
-        ${offer.demarches.length <= 1 ? 'Démarche' : 'Démarches'} (${offer.demarches.length})
+        <i class="bi bi-file-earmark-text"></i> ${label} (${offer.numeros.length})
       </div>
       <div class="list-group">
-        ${offer.demarches.map(demarche => {
-          const color = DEMARCHE_STATUS_COLOR[demarche.status] ?? 'secondary';
-          const progress = DEMARCHE_PROGRESS[demarche.status] ?? 0;
-          // Défini localement : offers.js n'a pas accès aux constantes de demarches.js
-          const CLOSURE_STATUSES = ['Octroyée', 'Refusée', 'Sans suite'];
-          const isClosure = CLOSURE_STATUSES.includes(demarche.status);
-          const isBrouillon = demarche.status === 'Brouillon';
-          const canEdit = isBrouillon || demarche.status === 'A compléter';
-          let line1Html = '';
-          let line2Html = '';
-          if (isClosure && demarche.closedAt) {
-            line1Html = `<span><i class="bi bi-calendar-check me-1"></i>Clôturée le ${demarche.closedAt}</span>`;
-          } else {
-            line1Html = `<span><i class="bi bi-calendar3 me-1"></i>Créée le ${demarche.createdAt}</span>`;
-            if (!isBrouillon && demarche.delay) {
-              const delayLabel = demarche.status === 'A compléter' ? 'Délai pour répondre' : 'Délai max. réponse';
-              line2Html = `<span><i class="bi bi-clock me-1"></i>${delayLabel} : ${demarche.delay}</span>`;
-            }
-          }
+        ${offer.numeros.map(n => {
+          const metaItems = NUMERO_META
+            .filter(m => n[m.key])
+            .map(m => `<span><strong>${m.label} :</strong> ${n[m.key]}</span>`)
+            .join('');
+
           return `
-            <div class="list-group-item">
-              <div class="row align-items-center g-2">
-                <div class="col-12 col-md-7">
-                  <strong>${demarche.title}</strong><br>
-                  <small class="text-muted d-flex flex-column gap-1">
-                    ${line1Html}
-                    ${line2Html}
-                  </small>
-                </div>
-                <div class="col-auto col-md-2">
-                  <span class="badge bg-${color}">${demarche.status}</span>
-                </div>
-                <div class="col col-md-2">
-                  <div class="demarche-progress-pct">${progress}%</div>
-                  <div class="progress bg-secondary-subtle" style="height:6px;">
-                    <div class="progress-bar bg-success" role="progressbar"
-                      style="width:${progress}%"
-                      aria-valuenow="${progress}" aria-valuemin="0" aria-valuemax="100">
-                    </div>
-                  </div>
-                </div>
-                <div class="col-auto ms-auto">
-                  <div class="d-flex gap-2">
-                    <button class="btn btn-sm btn-outline-secondary" title="Voir">
-                      <i class="bi bi-eye"></i>
-                    </button>
-                    ${canEdit ? `<button class="btn btn-sm btn-outline-primary" title="Modifier">
-                      <i class="bi bi-pencil"></i>
-                    </button>` : ''}
-                  </div>
-                </div>
-              </div>
-            </div>`;
+          <div class="list-group-item py-2">
+            <div class="fw-semibold">${n.sujet}</div>
+            <small class="text-muted d-flex flex-wrap align-items-center gap-2 mt-1">
+              <span class="d-flex align-items-center gap-1" title="Numéro de décision">
+                <i class="bi bi-hash" aria-hidden="true"></i>
+                <span class="font-monospace" aria-label="Numéro de décision : ${n.noDecision}">${n.noDecision}</span>
+                <button type="button" class="btn btn-link btn-sm p-0 copy-btn"
+                  data-copy="${n.noDecision}" title="Copier le numéro de décision"
+                  aria-label="Copier le numéro de décision ${n.noDecision}">
+                  <i class="bi bi-copy" aria-hidden="true"></i>
+                </button>
+              </span>
+              <span class="text-muted-subtle" aria-hidden="true">·</span>
+              <span title="Date de délivrance" aria-label="Délivré le ${n.dateDelivrance}">
+                <i class="bi bi-calendar-check me-1" aria-hidden="true"></i>${n.dateDelivrance}
+              </span>
+              <span class="text-muted-subtle" aria-hidden="true">→</span>
+              <span title="Date de fin de validité" aria-label="Valable jusqu'au ${n.dateFin}">
+                <i class="bi bi-calendar-x me-1" aria-hidden="true"></i>${n.dateFin}
+              </span>
+            </small>
+            ${metaItems ? `<small class="text-muted d-flex flex-wrap gap-3 mt-1">${metaItems}</small>` : ''}
+          </div>`;
         }).join('')}
       </div>
     </div>`;
@@ -209,21 +198,22 @@ function buildOfferRows(offer) {
         <div class="row g-3">
           <div class="col-12 col-md-3"><strong>Code postal</strong><div>${offer.codePostal}</div></div>
           <div class="col-12 col-md-3"><strong>Rue</strong><div>${offer.rue}</div></div>
-          ${isHebergement ? `
+          ${offer.numeroEnregistrement ? `
           <div class="col-12 col-md-3">
             <strong>N° Enregistrement</strong>
             <div class="d-flex align-items-center gap-2">
               ${offer.numeroEnregistrement}
               <button type="button" class="btn btn-link btn-sm p-0 copy-btn"
-                data-copy="${offer.numeroEnregistrement}" title="Copier">
-                <i class="bi bi-copy"></i>
+                data-copy="${offer.numeroEnregistrement}" title="Copier le numéro d'enregistrement"
+                aria-label="Copier le numéro d'enregistrement ${offer.numeroEnregistrement}">
+                <i class="bi bi-copy" aria-hidden="true"></i>
               </button>
             </div>
           </div>
           <div class="col-12 col-md-3"><strong>Date de fin ASI</strong><div>${offer.dateFinASI}</div></div>` : ''}
         </div>
         ${buildChildrenHtml(offer)}
-        ${buildDemarchesHtml(offer)}
+        ${buildNumerosHtml(offer)}
       </div>
     </td>`;
 

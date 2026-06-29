@@ -112,6 +112,10 @@ body {
 .row-open .toggle-icon { transform: rotate(90deg); color: #198754; }
 
 /* ── RESPONSIVE ───────────────────────────────────── */
+@media (max-width: 767.98px) and (orientation: portrait) {
+  .page-content { padding: 0; }
+}
+
 @media (max-width: 991.98px) {
   .sidebar { width: 72px !important; }
   .sidebar .brand-icon { max-width: 48px; }
@@ -119,6 +123,7 @@ body {
   .sidebar .nav-link { justify-content: center; padding: 0.85rem; }
   .sidebar .nav-link span { display: none; }
   .content-wrapper { margin-left: 72px !important; }
+  .sidebar-toggle-btn { display: none; }
 }
 
 /* ── UNITÉS ENFANTS ───────────────────────────────── */
