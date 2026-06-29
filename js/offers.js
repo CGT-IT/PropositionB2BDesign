@@ -228,6 +228,7 @@ function renderTable() {
     buildOfferRows(offer).forEach(row => fragment.appendChild(row));
   });
   tbody.replaceChildren(fragment);
+  initTooltips(tbody);
 }
 
 // Ajoute l'offre aux lignes ouvertes avant le re-rendu pour maintenir le panneau visible

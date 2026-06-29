@@ -1,3 +1,10 @@
+// ── TOOLTIPS ──────────────────────────────────────────────────────────────────
+function initTooltips(container = document) {
+  container.querySelectorAll('[title]').forEach(el => {
+    bootstrap.Tooltip.getOrCreateInstance(el, { trigger: 'hover focus' });
+  });
+}
+
 // ── COPIER ────────────────────────────────────────────────────────────────────
 function initCopyButtons() {
   // Délégation sur document car les boutons sont injectés dynamiquement dans le tableau

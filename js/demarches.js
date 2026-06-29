@@ -157,6 +157,7 @@ function renderDemarchesTable() {
     buildDemarcheRows(d).forEach(row => fragment.appendChild(row));
   });
   tbody.replaceChildren(fragment);
+  initTooltips(tbody);
 }
 
 // ── INIT : ÉVÉNEMENTS ─────────────────────────────────────────────────────────
