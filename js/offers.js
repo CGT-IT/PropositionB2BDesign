@@ -49,8 +49,11 @@ function buildChildrenHtml(offer) {
 
   if (!offer.children?.length && !canEdit) return '';
 
+  const atMax = (offer.children?.length ?? 0) >= MAX_CHILDREN;
   const addBtn = canEdit
-    ? `<button type="button" class="btn btn-sm btn-outline-success add-child-btn ms-2" data-offer-id="${offer.id}">
+    ? `<button type="button" class="btn btn-sm btn-outline-success add-child-btn ms-2"
+         data-offer-id="${offer.id}"
+         ${atMax ? 'disabled title="Maximum 5 chambres atteint"' : ''}>
          <i class="bi bi-plus-lg me-1"></i>Ajouter une chambre
        </button>`
     : '';
@@ -237,10 +240,13 @@ function refreshOffer(offerId) {
   renderTable();
 }
 
+const MAX_CHILDREN = 5;
+
 function onAddChild(offerId) {
   const offer = OFFERS.find(o => o.id === offerId);
   if (!offer) return;
   if (!offer.children) offer.children = [];
+  if (offer.children.length >= MAX_CHILDREN) return;
   const nextNum = offer.children.length + 1;
   const padded = String(nextNum).padStart(2, '0');
   offer.children.push({
