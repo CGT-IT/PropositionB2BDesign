@@ -23,8 +23,8 @@ const OFFERS = [
       }
     ],
     demarches: [
-      { id: 1, numero: "001/001/0000001", title: "Enregistrer un hébergement", submitedAt: "10/08/2025", closedAt: "15/11/2025", status: "Octroyée" },
-      { id: 2, numero: "001/001/0000002", title: "Renouveler la validité d'un enregistrement", submitedAt: "05/01/2026", delay: "30 jours", status: "En traitement" }
+      { id: 1, numero: "001/001/0000001", title: "Enregistrer un hébergement", createdAt: "01/08/2025", submitedAt: "10/08/2025", closedAt: "15/11/2025", status: "Octroyée" },
+      { id: 2, numero: "001/001/0000002", title: "Renouveler la validité d'un enregistrement", createdAt: "22/12/2025", submitedAt: "05/01/2026", delay: "30 jours", status: "En traitement" }
     ]
   },
   {
@@ -47,8 +47,8 @@ const OFFERS = [
       }
     ],
     demarches: [
-      { id: 1, numero: "001/001/0000003", title: "Enregistrer un hébergement", submitedAt: "12/09/2025", closedAt: "20/12/2025", status: "Octroyée" },
-      { id: 3, numero: "001/001/0000005", title: "Demander la certification d'un hébergement", submitedAt: "15/06/2026", delay: "45 jours", status: "Complétée" }
+      { id: 1, numero: "001/001/0000003", title: "Enregistrer un hébergement", createdAt: "04/09/2025", submitedAt: "12/09/2025", closedAt: "20/12/2025", status: "Octroyée" },
+      { id: 3, numero: "001/001/0000005", title: "Demander la certification d'un hébergement", createdAt: "02/06/2026", submitedAt: "15/06/2026", delay: "45 jours", status: "Complétée" }
     ]
   },
   {
@@ -67,7 +67,7 @@ const OFFERS = [
     status: "Nouveau",
     adresseComplete: "Avenue des Nations 5, 4020 Liège, BEL",
     demarches: [
-      { id: 1, numero: "001/002/0000001", title: "Demander la certification d'une attraction", submitedAt: "20/11/2025", status: "Brouillon" }
+      { id: 1, numero: "001/002/0000001", title: "Demander la certification d'une attraction", createdAt: "12/11/2025", submitedAt: "20/11/2025", status: "Brouillon" }
     ]
   },
   {
@@ -98,8 +98,8 @@ const OFFERS = [
       }
     ],
     demarches: [
-      { id: 1, numero: "001/001/0000006", title: "Enregistrer un hébergement", submitedAt: "03/01/2025", closedAt: "20/04/2025", status: "Octroyée" },
-      { id: 2, numero: "001/001/0000007", title: "Demander la certification d'un hébergement", submitedAt: "15/06/2025", closedAt: "28/09/2025", status: "Octroyée" }
+      { id: 1, numero: "001/001/0000006", title: "Enregistrer un hébergement", createdAt: "26/12/2024", submitedAt: "03/01/2025", closedAt: "20/04/2025", status: "Octroyée" },
+      { id: 2, numero: "001/001/0000007", title: "Demander la certification d'un hébergement", createdAt: "05/06/2025", submitedAt: "15/06/2025", closedAt: "28/09/2025", status: "Octroyée" }
     ]
   },
   {
@@ -122,8 +122,8 @@ const OFFERS = [
       }
     ],
     demarches: [
-      { id: 1, numero: "001/001/0000008", title: "Enregistrer un hébergement", submitedAt: "15/03/2025", closedAt: "10/06/2025", status: "Octroyée" },
-      { id: 2, numero: "001/001/0000009", title: "Renouveler la validité d'un enregistrement", submitedAt: "10/03/2026", delay: "30 jours", status: "Soumise" }
+      { id: 1, numero: "001/001/0000008", title: "Enregistrer un hébergement", createdAt: "08/03/2025", submitedAt: "15/03/2025", closedAt: "10/06/2025", status: "Octroyée" },
+      { id: 2, numero: "001/001/0000009", title: "Renouveler la validité d'un enregistrement", createdAt: "01/03/2026", submitedAt: "10/03/2026", delay: "30 jours", status: "Soumise" }
     ]
   },
   {
@@ -158,8 +158,8 @@ const OFFERS = [
       }
     ],
     demarches: [
-      { id: 1, numero: "001/001/0000010", title: "Enregistrer un hébergement", submitedAt: "22/04/2025", closedAt: "15/07/2025", status: "Octroyée" },
-      { id: 3, numero: "001/001/0000012", title: "Demander la certification d'un hébergement", submitedAt: "15/10/2025", closedAt: "15/11/2025", status: "Octroyée" }
+      { id: 1, numero: "001/001/0000010", title: "Enregistrer un hébergement", createdAt: "14/04/2025", submitedAt: "22/04/2025", closedAt: "15/07/2025", status: "Octroyée" },
+      { id: 3, numero: "001/001/0000012", title: "Demander la certification d'un hébergement", createdAt: "07/10/2025", submitedAt: "15/10/2025", closedAt: "15/11/2025", status: "Octroyée" }
     ]
   },
   {
@@ -172,7 +172,7 @@ const OFFERS = [
     adresseComplete: "Avenue des Fagnes 2, 4950 Waimes, BEL",
     capaciteASI: 2,
     demarches: [
-      { id: 1, numero: "001/001/0000013", title: "Enregistrer un hébergement", submitedAt: "10/06/2025", status: "Brouillon" }
+      { id: 1, numero: "001/001/0000013", title: "Enregistrer un hébergement", createdAt: "03/06/2025", submitedAt: "10/06/2025", status: "Brouillon" }
     ]
   },
   {
@@ -210,10 +210,10 @@ const OFFERS = [
       }
     ],
     demarches: [
-      { id: 1, numero: "001/001/0000014", title: "Enregistrer un hébergement", submitedAt: "07/07/2025", closedAt: "20/10/2025", status: "Octroyée" },
-      { id: 2, numero: "001/001/0000015", title: "Demander la certification d'un hébergement", submitedAt: "10/11/2025", closedAt: "15/01/2026", status: "Octroyée" },
-      { id: 3, numero: "001/001/0000018", title: "Demander le classement d'un hébergement", submitedAt: "15/01/2026", closedAt: "15/03/2026", status: "Octroyée" },
-      { id: 4, numero: "001/001/0000016", title: "Arrêter une exploitation", submitedAt: "01/06/2026", closedAt: "25/09/2026", status: "Sans suite" }
+      { id: 1, numero: "001/001/0000014", title: "Enregistrer un hébergement", createdAt: "28/06/2025", submitedAt: "07/07/2025", closedAt: "20/10/2025", status: "Octroyée" },
+      { id: 2, numero: "001/001/0000015", title: "Demander la certification d'un hébergement", createdAt: "02/11/2025", submitedAt: "10/11/2025", closedAt: "15/01/2026", status: "Octroyée" },
+      { id: 3, numero: "001/001/0000018", title: "Demander le classement d'un hébergement", createdAt: "07/01/2026", submitedAt: "15/01/2026", closedAt: "15/03/2026", status: "Octroyée" },
+      { id: 4, numero: "001/001/0000016", title: "Arrêter une exploitation", createdAt: "22/05/2026", submitedAt: "01/06/2026", closedAt: "25/09/2026", status: "Sans suite" }
     ]
   },
   {
@@ -233,7 +233,7 @@ const OFFERS = [
       }
     ],
     demarches: [
-      { id: 1, numero: "001/002/0000002", title: "Demander la certification d'une attraction", submitedAt: "18/08/2025", closedAt: "05/12/2025", status: "Octroyée" }
+      { id: 1, numero: "001/002/0000002", title: "Demander la certification d'une attraction", createdAt: "10/08/2025", submitedAt: "18/08/2025", closedAt: "05/12/2025", status: "Octroyée" }
     ]
   },
   {
@@ -254,8 +254,8 @@ const OFFERS = [
       }
     ],
     demarches: [
-      { id: 1, numero: "001/002/0000003", title: "Demander la certification d'une attraction", submitedAt: "01/11/2025", closedAt: "15/02/2026", status: "Octroyée" },
-      { id: 2, numero: "001/002/0000004", title: "Demander la certification d'une attraction", submitedAt: "01/05/2026", delay: "60 jours", status: "Soumise" }
+      { id: 1, numero: "001/002/0000003", title: "Demander la certification d'une attraction", createdAt: "23/10/2025", submitedAt: "01/11/2025", closedAt: "15/02/2026", status: "Octroyée" },
+      { id: 2, numero: "001/002/0000004", title: "Demander la certification d'une attraction", createdAt: "21/04/2026", submitedAt: "01/05/2026", delay: "60 jours", status: "Soumise" }
     ]
   },
   {
@@ -276,7 +276,7 @@ const OFFERS = [
     adresseComplete: "Route de la Semois 22, 6830 Bouillon, BEL",
     capaciteASI: 8,
     demarches: [
-      { id: 1, numero: "001/001/0000017", title: "Enregistrer un hébergement", submitedAt: "02/12/2025", delay: "21 jours", status: "A compléter" }
+      { id: 1, numero: "001/001/0000017", title: "Enregistrer un hébergement", createdAt: "24/11/2025", submitedAt: "02/12/2025", delay: "21 jours", status: "A compléter" }
     ]
   }
 ];

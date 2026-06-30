@@ -1,6 +1,6 @@
 // ── STATE ─────────────────────────────────────────────────────────────────────
 const stateD = {
-  sort: { key: 'submitedAt', direction: 'desc' },
+  sort: { key: 'createdAt', direction: 'desc' },
   openRows: new Set()
 };
 
@@ -20,6 +20,7 @@ const FLAT_DEMARCHES = OFFERS.flatMap(offer =>
     offerType: offer.type,
     numero: d.numero ?? null,
     title: d.title,
+    createdAt: d.createdAt,
     submitedAt: d.submitedAt,
     closedAt: d.closedAt ?? null,
     delay: d.delay ?? null,
@@ -37,7 +38,7 @@ function getVisibleDemarches() {
     if (typeVal !== 'Tous' && d.offerType !== typeVal) return false;
     if (statusVal !== 'Tous' && d.status !== statusVal) return false;
     if (search) {
-      const haystack = [d.offerName, d.offerType, d.title, d.status, d.submitedAt].join(' ').toLowerCase();
+      const haystack = [d.offerName, d.offerType, d.title, d.status, d.createdAt, d.submitedAt].join(' ').toLowerCase();
       if (!haystack.includes(search)) return false;
     }
     return true;
@@ -48,7 +49,7 @@ function getVisibleDemarches() {
     const bIsClosure = CLOSURE_STATUSES_D.includes(b.status);
     if (aIsClosure !== bIsClosure) return aIsClosure ? 1 : -1;
     // dd/mm/yyyy ne peut pas être trié de base — conversion en timestamp nécessaire
-    return parseDMY(b.submitedAt) - parseDMY(a.submitedAt);
+    return parseDMY(b.createdAt) - parseDMY(a.createdAt);
   });
 
   return filtered;
@@ -132,7 +133,9 @@ function buildDemarcheRows(d) {
             </div>
           </div>` : ''}
           <div class="col-12 col-md-3"><strong>Type d'offre</strong><div>${d.offerType}</div></div>
-          ${!isBrouillon ? `<div class="col-12 col-md-3"><strong>Date de soumission</strong><div>${d.submitedAt}</div></div>` : ''}
+          ${isBrouillon
+            ? `<div class="col-12 col-md-3"><strong>Date de création</strong><div>${d.createdAt}</div></div>`
+            : `<div class="col-12 col-md-3"><strong>Date de soumission</strong><div>${d.submitedAt}</div></div>`}
           ${delayHtml}
           ${closedAtHtml}
         </div>
