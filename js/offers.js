@@ -18,7 +18,7 @@ function getVisibleOffers() {
     if (search) {
       const haystack = [
         offer.name, offer.type, offer.subType, offer.status,
-        offer.codePostal, offer.rue, offer.numeroEnregistrement, offer.dateFinASI
+        offer.adresseComplete, offer.numeroEnregistrement, offer.dateFinASI
       ].join(' ').toLowerCase();
       if (!haystack.includes(search)) return false;
     }
@@ -199,8 +199,7 @@ function buildOfferRows(offer) {
           <div class="col-12 col-sm-6"><strong>Statut</strong><div><span class="badge bg-${statusColor}">${offer.status}</span></div></div>
         </div>
         <div class="row g-3">
-          <div class="col-12 col-md-3"><strong>Code postal</strong><div>${offer.codePostal}</div></div>
-          <div class="col-12 col-md-3"><strong>Rue</strong><div>${offer.rue}</div></div>
+          <div class="col-12 col-md-6"><strong>Adresse</strong><div>${offer.adresseComplete}</div></div>
           ${offer.numeroEnregistrement ? `
           <div class="col-12 col-md-3">
             <strong>N° Enregistrement</strong>

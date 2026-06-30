@@ -6,8 +6,7 @@ const OFFERS = [
     type: "Hébergement",
     subType: "Maison d'hôtes",
     status: "Enregistrée",
-    codePostal: "4960",
-    rue: "Rue des Fagnes 12",
+    adresseComplete: "Rue des Fagnes 12, 4960 Malmedy, BEL",
     numeroEnregistrement: "BELWAL001/001/0000440",
     dateFinASI: "15/11/2028",
     children: [
@@ -34,8 +33,7 @@ const OFFERS = [
     type: "Hébergement",
     subType: "Meublé",
     status: "Enregistrée",
-    codePostal: "4845",
-    rue: "Rue du Gîte 8",
+    adresseComplete: "Rue du Gîte 8, 4845 Jalhay, BEL",
     numeroEnregistrement: "BELWAL001/001/0000441",
     dateFinASI: "15/06/2031",
     numeros: [
@@ -57,8 +55,7 @@ const OFFERS = [
     date: "05/10/2025",
     type: "Activité",
     status: "Nouveau",
-    codePostal: "4500",
-    rue: "Chaussée de Liège 23"
+    adresseComplete: "Chaussée de Liège 23, 4500 Huy, BEL"
   },
   {
     id: 4,
@@ -66,8 +63,7 @@ const OFFERS = [
     date: "20/11/2025",
     type: "Attraction",
     status: "Nouveau",
-    codePostal: "4020",
-    rue: "Avenue des Nations 5",
+    adresseComplete: "Avenue des Nations 5, 4020 Liège, BEL",
     demarches: [
       { id: 1, numero: "001/002/0000001", title: "Demander la certification d'une attraction", createdAt: "20/11/2025", status: "Brouillon" }
     ]
@@ -79,8 +75,7 @@ const OFFERS = [
     type: "Hébergement",
     subType: "Hôtel",
     status: "Certifiée",
-    codePostal: "6900",
-    rue: "Route de Marche 45",
+    adresseComplete: "Route de Marche 45, 6900 Marche-en-Famenne, BEL",
     numeroEnregistrement: "BELWAL001/001/0000442",
     dateFinASI: "28/09/2030",
     numeros: [
@@ -111,8 +106,7 @@ const OFFERS = [
     type: "Hébergement",
     subType: "Camping",
     status: "Enregistrée",
-    codePostal: "6980",
-    rue: "Chemin du Bois 3",
+    adresseComplete: "Chemin du Bois 3, 6980 La Roche-en-Ardenne, BEL",
     numeroEnregistrement: "BELWAL001/001/0000443",
     dateFinASI: "10/06/2028",
     numeros: [
@@ -135,8 +129,7 @@ const OFFERS = [
     type: "Hébergement",
     subType: "Maison d'hôtes",
     status: "Certifiée",
-    codePostal: "5560",
-    rue: "Rue de la Lesse 17",
+    adresseComplete: "Rue de la Lesse 17, 5560 Houyet, BEL",
     numeroEnregistrement: "BELWAL001/001/0000444",
     dateFinASI: "20/02/2029",
     children: [
@@ -171,8 +164,7 @@ const OFFERS = [
     type: "Hébergement",
     subType: "Meublé",
     status: "Nouveau",
-    codePostal: "4950",
-    rue: "Avenue des Fagnes 2",
+    adresseComplete: "Avenue des Fagnes 2, 4950 Waimes, BEL",
     demarches: [
       { id: 1, numero: "001/001/0000013", title: "Enregistrer un hébergement", createdAt: "10/06/2025", status: "Brouillon" }
     ]
@@ -184,8 +176,7 @@ const OFFERS = [
     type: "Hébergement",
     subType: "Hôtel",
     status: "Classé",
-    codePostal: "4000",
-    rue: "Place du Marché 1",
+    adresseComplete: "Place du Marché 1, 4000 Liège, BEL",
     numeroEnregistrement: "BELWAL001/001/0000446",
     dateFinASI: "15/03/2031",
     numeros: [
@@ -224,8 +215,7 @@ const OFFERS = [
     date: "18/08/2025",
     type: "Attraction",
     status: "Certifiée",
-    codePostal: "5580",
-    rue: "Rue Joseph Lamotte 2",
+    adresseComplete: "Rue Joseph Lamotte 2, 5580 Han-sur-Lesse, BEL",
     numeros: [
       {
         noDecision: "001/002/000001",
@@ -245,8 +235,7 @@ const OFFERS = [
     date: "01/11/2025",
     type: "Attraction",
     status: "Certifiée",
-    codePostal: "5000",
-    rue: "Place d'Armes 1",
+    adresseComplete: "Place d'Armes 1, 5000 Namur, BEL",
     numeros: [
       {
         noDecision: "001/002/000002",
@@ -268,8 +257,7 @@ const OFFERS = [
     date: "14/11/2025",
     type: "Activité",
     status: "Nouveau",
-    codePostal: "4190",
-    rue: "Quai de l'Ourthe 8"
+    adresseComplete: "Quai de l'Ourthe 8, 4190 Ferrières, BEL"
   },
   {
     id: 14,
@@ -278,8 +266,7 @@ const OFFERS = [
     type: "Hébergement",
     subType: "Camping",
     status: "Nouveau",
-    codePostal: "6830",
-    rue: "Route de la Semois 22",
+    adresseComplete: "Route de la Semois 22, 6830 Bouillon, BEL",
     demarches: [
       { id: 1, numero: "001/001/0000017", title: "Enregistrer un hébergement", createdAt: "02/12/2025", delay: "21 jours", status: "A compléter" }
     ]
