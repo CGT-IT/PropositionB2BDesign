@@ -165,6 +165,9 @@ function buildOfferRows(offer) {
   const subTypeBadge = offer.subType
     ? ` <span class="badge bg-info-subtle text-info-emphasis ms-1">${offer.subType}</span>`
     : '';
+  const childrenBadge = offer.children?.length
+    ? ` <span class="badge bg-light text-dark ms-1" data-bs-toggle="tooltip" title="Nombre de chambres">${offer.children.length}</span>`
+    : '';
 
   const mainRow = document.createElement('tr');
   mainRow.className = `clickable-row${isOpen ? ' row-open' : ''}`;
@@ -174,8 +177,8 @@ function buildOfferRows(offer) {
   mainRow.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
   mainRow.innerHTML = `
     <td><i class="bi bi-chevron-right toggle-icon" aria-hidden="true"></i></td>
-    <td>${offer.name}${offer.children?.length ? ` <span class="badge bg-light text-dark ms-2">${offer.children.length}</span>` : ''}</td>
-    <td class="d-none d-md-table-cell">${offer.type}${subTypeBadge}</td>
+    <td>${offer.name}</td>
+    <td class="d-none d-md-table-cell">${offer.type}${subTypeBadge}${childrenBadge}</td>
     <td class="d-none d-md-table-cell"><span class="badge bg-${statusColor}">${offer.status}</span></td>
     <td class="text-end">
       <div class="d-flex gap-2 justify-content-end">
