@@ -202,7 +202,7 @@ function buildOfferRows(offer) {
           <div class="col-12 col-sm-6"><strong>Statut</strong><div><span class="badge bg-${statusColor}">${offer.status}</span></div></div>
         </div>
         <div class="row g-3">
-          <div class="col-12 col-md-6"><strong>Adresse</strong><div>${offer.adresseComplete}</div></div>
+          <div class="col-12 col-md-5"><strong>Adresse</strong><div>${offer.adresseComplete}</div></div>
           ${offer.numeroEnregistrement ? `
           <div class="col-12 col-md-3">
             <strong>N° Enregistrement</strong>
@@ -215,7 +215,9 @@ function buildOfferRows(offer) {
               </button>
             </div>
           </div>
-          <div class="col-12 col-md-3"><strong>Date de fin ASI</strong><div>${offer.dateFinASI}</div></div>` : ''}
+          <div class="col-12 col-md-2"><strong>Date de fin ASI</strong><div>${offer.dateFinASI}</div></div>` : ''}
+          ${offer.capaciteASI != null ? `
+          <div class="col-12 col-md-2"><strong>Capacité ASI</strong><div>${offer.capaciteASI} pers.</div></div>` : ''}
         </div>
         ${buildChildrenHtml(offer)}
         ${buildNumerosHtml(offer)}

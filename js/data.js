@@ -7,6 +7,7 @@ const OFFERS = [
     subType: "Maison d'hôtes",
     status: "Enregistrée",
     adresseComplete: "Rue des Fagnes 12, 4960 Malmedy, BEL",
+    capaciteASI: 5,
     numeroEnregistrement: "BELWAL001/001/0000440",
     dateFinASI: "15/11/2028",
     children: [
@@ -34,6 +35,7 @@ const OFFERS = [
     subType: "Meublé",
     status: "Enregistrée",
     adresseComplete: "Rue du Gîte 8, 4845 Jalhay, BEL",
+    capaciteASI: 4,
     numeroEnregistrement: "BELWAL001/001/0000441",
     dateFinASI: "15/06/2031",
     numeros: [
@@ -76,6 +78,7 @@ const OFFERS = [
     subType: "Hôtel",
     status: "Certifiée",
     adresseComplete: "Route de Marche 45, 6900 Marche-en-Famenne, BEL",
+    capaciteASI: 18,
     numeroEnregistrement: "BELWAL001/001/0000442",
     dateFinASI: "28/09/2030",
     numeros: [
@@ -107,6 +110,7 @@ const OFFERS = [
     subType: "Camping",
     status: "Enregistrée",
     adresseComplete: "Chemin du Bois 3, 6980 La Roche-en-Ardenne, BEL",
+    capaciteASI: 12,
     numeroEnregistrement: "BELWAL001/001/0000443",
     dateFinASI: "10/06/2028",
     numeros: [
@@ -130,6 +134,7 @@ const OFFERS = [
     subType: "Maison d'hôtes",
     status: "Certifiée",
     adresseComplete: "Rue de la Lesse 17, 5560 Houyet, BEL",
+    capaciteASI: 9,
     numeroEnregistrement: "BELWAL001/001/0000444",
     dateFinASI: "20/02/2029",
     children: [
@@ -165,6 +170,7 @@ const OFFERS = [
     subType: "Meublé",
     status: "Nouveau",
     adresseComplete: "Avenue des Fagnes 2, 4950 Waimes, BEL",
+    capaciteASI: 2,
     demarches: [
       { id: 1, numero: "001/001/0000013", title: "Enregistrer un hébergement", createdAt: "10/06/2025", status: "Brouillon" }
     ]
@@ -177,6 +183,7 @@ const OFFERS = [
     subType: "Hôtel",
     status: "Classé",
     adresseComplete: "Place du Marché 1, 4000 Liège, BEL",
+    capaciteASI: 20,
     numeroEnregistrement: "BELWAL001/001/0000446",
     dateFinASI: "15/03/2031",
     numeros: [
@@ -267,6 +274,7 @@ const OFFERS = [
     subType: "Camping",
     status: "Nouveau",
     adresseComplete: "Route de la Semois 22, 6830 Bouillon, BEL",
+    capaciteASI: 8,
     demarches: [
       { id: 1, numero: "001/001/0000017", title: "Enregistrer un hébergement", createdAt: "02/12/2025", delay: "21 jours", status: "A compléter" }
     ]
