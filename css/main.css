@@ -111,18 +111,64 @@ body {
 .toggle-icon { transition: transform 0.2s ease; display: inline-block; font-size: 0.85rem; color: #6c757d; }
 .row-open .toggle-icon { transform: rotate(90deg); color: #198754; }
 
-/* ── RESPONSIVE ───────────────────────────────────── */
-@media (max-width: 767.98px) and (orientation: portrait) {
-  .page-content { padding: 0; }
+/* ── BURGER BUTTON (caché par défaut, visible en portrait mobile) ── */
+.burger-btn {
+  display: none;
+  background: none;
+  border: none;
+  font-size: 1.6rem;
+  color: #198754;
+  padding: 0.1rem 0.4rem;
+  cursor: pointer;
+  line-height: 1;
+  flex-shrink: 0;
 }
 
-@media (max-width: 991.98px) {
+/* ── BACKDROP sidebar mobile ──────────────────────── */
+.sidebar-backdrop {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  z-index: 1029;
+}
+.sidebar-backdrop.show { display: block; }
+
+/* ── RESPONSIVE ───────────────────────────────────── */
+
+/* Tablette (768px – 991px) : sidebar icônes fixes */
+@media (min-width: 768px) and (max-width: 991.98px) {
   .sidebar { width: 72px !important; }
   .sidebar .brand-icon { max-width: 48px; }
   .sidebar .brand { justify-content: center; padding-inline: 0.25rem; }
   .sidebar .nav-link { justify-content: center; padding: 0.85rem; }
   .sidebar .nav-link span { display: none; }
   .content-wrapper { margin-left: 72px !important; }
+  .sidebar-toggle-btn { display: none; }
+}
+
+/* Portrait mobile (≤767px) : burger + sidebar en overlay */
+@media (max-width: 767.98px) {
+  .page-content { padding: 0; }
+
+  .burger-btn { display: flex; align-items: center; }
+
+  .sidebar {
+    width: 260px !important;
+    transform: translateX(-260px);
+    transition: transform 0.3s ease;
+    border-right: none;
+    box-shadow: 4px 0 16px rgba(0, 0, 0, 0.15);
+  }
+  .sidebar.open { transform: translateX(0); }
+
+  /* Restaurer l'apparence complète quand la sidebar est ouverte */
+  .sidebar.open .brand { justify-content: center; padding-inline: 1.25rem; }
+  .sidebar.open .brand-icon { max-width: 180px; }
+  .sidebar.open .nav-link { justify-content: flex-start; padding: 0.95rem 1rem; }
+  .sidebar.open .nav-link span { display: inline; }
+
+  .content-wrapper { margin-left: 0 !important; }
   .sidebar-toggle-btn { display: none; }
 }
 

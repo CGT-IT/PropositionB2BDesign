@@ -53,38 +53,85 @@
     });
   }
 
-  function isMobile() {
-    return window.innerWidth <= 991.98;
-  }
+  function isPortraitMobile() { return window.innerWidth <= 767.98; }
+  function isTablet()          { return window.innerWidth >= 768 && window.innerWidth <= 991.98; }
 
   function initToggle() {
-    const sidebar = document.getElementById('sidebar');
-    const btn = document.getElementById('sidebarToggleBtn');
-    const icon = btn.querySelector('i');
-    const label = btn.querySelector('.btn-label');
+    const sidebar   = document.getElementById('sidebar');
+    const toggleBtn = document.getElementById('sidebarToggleBtn');
+    const burgerBtn = document.getElementById('burgerBtn');
 
-    const refresh = () => {
+    // Backdrop créé dynamiquement, ajouté au body une seule fois
+    const backdrop = document.createElement('div');
+    backdrop.className = 'sidebar-backdrop';
+    document.body.appendChild(backdrop);
+
+    const refreshToggleBtn = () => {
       const collapsed = sidebar.classList.contains('collapsed');
+      const icon  = toggleBtn.querySelector('i');
+      const label = toggleBtn.querySelector('.btn-label');
       icon.className = `bi bi-chevron-${collapsed ? 'right' : 'left'}`;
       label.textContent = collapsed ? 'Ouvrir' : 'Réduire';
-      btn.setAttribute('aria-label', collapsed ? 'Ouvrir le menu' : 'Réduire le menu');
+      toggleBtn.setAttribute('aria-label', collapsed ? 'Ouvrir le menu' : 'Réduire le menu');
     };
 
-    const syncMobile = () => {
-      if (isMobile()) sidebar.classList.add('collapsed');
-      refresh();
-      syncTooltips();
+    const closeMobileSidebar = () => {
+      sidebar.classList.remove('open');
+      backdrop.classList.remove('show');
     };
 
-    btn.addEventListener('click', () => {
-      if (isMobile()) return;
+    const openMobileSidebar = () => {
+      sidebar.classList.add('open');
+      backdrop.classList.add('show');
+    };
+
+    const syncLayout = () => {
+      if (isPortraitMobile()) {
+        // Mode burger : sidebar cachée, pas de collapsed
+        sidebar.classList.remove('collapsed', 'open');
+        backdrop.classList.remove('show');
+      } else if (isTablet()) {
+        // Tablette : icônes fixes, pas de toggle
+        sidebar.classList.add('collapsed');
+        sidebar.classList.remove('open');
+        backdrop.classList.remove('show');
+        syncTooltips();
+      } else {
+        // Desktop : comportement normal
+        sidebar.classList.remove('open');
+        backdrop.classList.remove('show');
+        refreshToggleBtn();
+        syncTooltips();
+      }
+    };
+
+    // Bouton toggle desktop (expand/collapse)
+    toggleBtn.addEventListener('click', () => {
+      if (isPortraitMobile() || isTablet()) return;
       sidebar.classList.toggle('collapsed');
-      refresh();
+      refreshToggleBtn();
       syncTooltips();
     });
 
-    window.addEventListener('resize', syncMobile);
-    syncMobile();
+    // Burger (portrait mobile)
+    if (burgerBtn) {
+      burgerBtn.addEventListener('click', () => {
+        sidebar.classList.contains('open') ? closeMobileSidebar() : openMobileSidebar();
+      });
+    }
+
+    // Clic sur le backdrop : ferme la sidebar
+    backdrop.addEventListener('click', closeMobileSidebar);
+
+    // Clic sur un lien de nav en mobile : ferme la sidebar
+    sidebar.addEventListener('click', e => {
+      if (isPortraitMobile() && e.target.closest('.nav-link')) {
+        closeMobileSidebar();
+      }
+    });
+
+    window.addEventListener('resize', syncLayout);
+    syncLayout();
   }
 
   document.addEventListener('DOMContentLoaded', () => {
