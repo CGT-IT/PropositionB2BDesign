@@ -43,19 +43,12 @@ function getVisibleDemarches() {
     return true;
   });
 
-  const { key, direction } = stateD.sort;
-  const multiplier = direction === 'asc' ? 1 : -1;
-
   filtered.sort((a, b) => {
-    if (key === 'submitedAt') {
-      // dd/mm/yyyy ne peut pas être trié de base — conversion en timestamp nécessaire
-      return (parseDMY(a[key]) - parseDMY(b[key])) * multiplier;
-    }
-    const valA = a[key] ?? '';
-    const valB = b[key] ?? '';
-    if (valA < valB) return -multiplier;
-    if (valA > valB) return multiplier;
-    return 0;
+    const aIsClosure = CLOSURE_STATUSES_D.includes(a.status);
+    const bIsClosure = CLOSURE_STATUSES_D.includes(b.status);
+    if (aIsClosure !== bIsClosure) return aIsClosure ? 1 : -1;
+    // dd/mm/yyyy ne peut pas être trié de base — conversion en timestamp nécessaire
+    return parseDMY(b.submitedAt) - parseDMY(a.submitedAt);
   });
 
   return filtered;
