@@ -149,9 +149,13 @@ function buildDemarcheRows(d) {
                 <span class="font-monospace">${d.result.noDecision}</span>
               </span>
               <span class="text-muted-subtle" aria-hidden="true">·</span>
-              <span><i class="bi bi-calendar-check me-1" aria-hidden="true"></i>${d.result.dateDelivrance}</span>
+              <span title="Date de délivrance" aria-label="Délivré le ${d.result.dateDelivrance}">
+                <i class="bi bi-calendar-check me-1" aria-hidden="true"></i>${d.result.dateDelivrance}
+              </span>
               <span class="text-muted-subtle" aria-hidden="true">→</span>
-              <span><i class="bi bi-calendar-x me-1" aria-hidden="true"></i>${d.result.dateFin}</span>
+              <span title="Date de fin de validité" aria-label="Valable jusqu'au ${d.result.dateFin}">
+                <i class="bi bi-calendar-x me-1" aria-hidden="true"></i>${d.result.dateFin}
+              </span>
             </small>
             ${metaItems ? `<small class="text-muted d-flex flex-wrap gap-3 mt-1">${metaItems}</small>` : ''}
           </div>
