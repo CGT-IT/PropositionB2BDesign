@@ -103,8 +103,21 @@ function buildDemarcheRows(d) {
   let delayHtml = '';
   // Un brouillon n'ayant pas encore été soumis, le délai de traitement ne s'applique pas
   if (!isBrouillon && d.delay) {
-    const delayLabel = d.status === 'A compléter' ? 'Délai pour répondre' : 'Délai max. réponse';
-    delayHtml = `<div class="col-12 col-md-3"><strong>${delayLabel}</strong><div>${d.delay}</div></div>`;
+    const isACompleter = d.status === 'A compléter';
+    const delayIcon = isACompleter ? 'bi-person-fill' : 'bi-building';
+    const delayTooltip = isACompleter
+      ? 'Votre délai de réponse'
+      : "Délai de traitement de l'administration";
+    delayHtml = `
+      <div class="col-12 col-md-3">
+        <strong class="d-flex align-items-center gap-1">
+          <i class="bi ${delayIcon}" aria-hidden="true"></i>
+          Délai
+          <i class="bi bi-question-circle text-muted" style="font-size:.8rem;"
+            data-bs-toggle="tooltip" title="${delayTooltip}" aria-label="${delayTooltip}"></i>
+        </strong>
+        <div>${d.delay}</div>
+      </div>`;
   }
 
   let closedAtHtml = '';
@@ -134,10 +147,6 @@ function buildDemarcheRows(d) {
               <span class="d-flex align-items-center gap-1" title="Numéro de décision">
                 <i class="bi bi-hash" aria-hidden="true"></i>
                 <span class="font-monospace">${d.result.noDecision}</span>
-                <button type="button" class="btn btn-link btn-sm p-0 copy-btn"
-                  data-copy="${d.result.noDecision}" title="Copier le numéro de décision">
-                  <i class="bi bi-copy" aria-hidden="true"></i>
-                </button>
               </span>
               <span class="text-muted-subtle" aria-hidden="true">·</span>
               <span><i class="bi bi-calendar-check me-1" aria-hidden="true"></i>${d.result.dateDelivrance}</span>
@@ -163,13 +172,7 @@ function buildDemarcheRows(d) {
           ${d.numero ? `
           <div class="col-12 col-md-3">
             <strong>N° de démarche</strong>
-            <div class="d-flex align-items-center gap-2">
-              ${d.numero}
-              <button type="button" class="btn btn-link btn-sm p-0 copy-btn"
-                data-copy="${d.numero}" title="Copier">
-                <i class="bi bi-copy"></i>
-              </button>
-            </div>
+            <div>${d.numero}</div>
           </div>` : ''}
           <div class="col-12 col-md-3"><strong>Type d'offre</strong><div>${d.offerType}</div></div>
           ${isBrouillon
