@@ -24,7 +24,8 @@ const FLAT_DEMARCHES = OFFERS.flatMap(offer =>
     submitedAt: d.submitedAt,
     closedAt: d.closedAt ?? null,
     delay: d.delay ?? null,
-    status: d.status
+    status: d.status,
+    result: (offer.numeros ?? []).find(n => n.sujet === d.title) ?? null
   }))
 );
 
@@ -111,6 +112,44 @@ function buildDemarcheRows(d) {
     closedAtHtml = `<div class="col-12 col-md-3"><strong>Date de clôture</strong><div>${d.closedAt}</div></div>`;
   }
 
+  let resultHtml = '';
+  if (d.status === 'Octroyée' && d.result) {
+    const RESULT_META = [
+      { key: 'certification',          label: 'Certification' },
+      { key: 'categorieCertification', label: 'Catégorie de certification' },
+      { key: 'classement',             label: 'Classement' },
+      { key: 'poleDattraction',        label: "Pôle d'attraction" },
+      { key: 'sousPoleRecréatif',      label: 'Sous-pôle récréatif' },
+    ];
+    const metaItems = RESULT_META
+      .filter(m => d.result[m.key])
+      .map(m => `<span><strong>${m.label} :</strong> ${d.result[m.key]}</span>`)
+      .join('');
+    resultHtml = `
+      <div class="mt-3">
+        <div class="fw-semibold mb-2"><i class="bi bi-award"></i> Résultat de la démarche</div>
+        <div class="list-group">
+          <div class="list-group-item py-2">
+            <small class="text-muted d-flex flex-wrap align-items-center gap-2">
+              <span class="d-flex align-items-center gap-1" title="Numéro de décision">
+                <i class="bi bi-hash" aria-hidden="true"></i>
+                <span class="font-monospace">${d.result.noDecision}</span>
+                <button type="button" class="btn btn-link btn-sm p-0 copy-btn"
+                  data-copy="${d.result.noDecision}" title="Copier le numéro de décision">
+                  <i class="bi bi-copy" aria-hidden="true"></i>
+                </button>
+              </span>
+              <span class="text-muted-subtle" aria-hidden="true">·</span>
+              <span><i class="bi bi-calendar-check me-1" aria-hidden="true"></i>${d.result.dateDelivrance}</span>
+              <span class="text-muted-subtle" aria-hidden="true">→</span>
+              <span><i class="bi bi-calendar-x me-1" aria-hidden="true"></i>${d.result.dateFin}</span>
+            </small>
+            ${metaItems ? `<small class="text-muted d-flex flex-wrap gap-3 mt-1">${metaItems}</small>` : ''}
+          </div>
+        </div>
+      </div>`;
+  }
+
   const detailRow = document.createElement('tr');
   detailRow.id = `detail-${d.uid}`;
   detailRow.className = `detail-cell collapse${isOpen ? ' show' : ''}`;
@@ -139,6 +178,7 @@ function buildDemarcheRows(d) {
           ${delayHtml}
           ${closedAtHtml}
         </div>
+        ${resultHtml}
       </div>
     </td>`;
 
